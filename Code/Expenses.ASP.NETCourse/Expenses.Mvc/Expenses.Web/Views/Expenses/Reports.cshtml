@@ -1,0 +1,124 @@
+﻿@model Expenses.Web.Models.ReportsViewModel
+
+@{
+    ViewBag.Title = "Reports";
+}
+
+<p>
+    @Html.ActionLink("Create New Expense Report", "NewReport")
+</p>
+
+<h2>Your Saved Reports</h2>
+
+<table class="table">
+    <tr>
+        <th>Amount</th>
+        <th>Cost Center</th>
+        <th>Notes</th>
+        <th>Approver</th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model.SavedReports)
+{
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Amount)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CostCenter)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Notes)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Approver)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Report", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "DeleteReport", new { id=item.Id }) 
+        </td>
+    </tr>
+}
+
+</table>
+
+<h2>Your Submitted Reports</h2>
+
+<table class="table">
+  <tr>
+    <th>Amount</th>
+    <th>Cost Center</th>
+    <th>Notes</th>
+    <th>Approver</th>
+    <th>Date Submitted</th>
+    <th></th>
+  </tr>
+
+  @foreach (var item in Model.SubmittedReports)
+  {
+    <tr>
+      <td>
+        @Html.DisplayFor(modelItem => item.Amount)
+      </td>
+      <td>
+        @Html.DisplayFor(modelItem => item.CostCenter)
+      </td>
+      <td>
+        @Html.DisplayFor(modelItem => item.Notes)
+      </td>
+      <td>
+        @Html.DisplayFor(modelItem => item.Approver)
+      </td>
+      <td>
+        @Html.DisplayFor(modelItem => item.DateSubmitted)
+      </td>
+      <td>
+        @Html.ActionLink("View", "ViewReport", new { id = item.Id })
+      </td>
+    </tr>
+  }
+
+</table>
+
+<h2>Your Approved Reports for the last 90 days</h2>
+
+<table class="table">
+  <tr>
+    <th>Amount</th>
+    <th>Cost Center</th>
+    <th>Notes</th>
+    <th>Approver</th>
+    <th>Date Submitted</th>
+    <th>Date Approved</th>
+    <th></th>
+  </tr>
+
+  @foreach (var item in Model.RecentlyApprovedReports)
+{
+    <tr>
+      <td>
+        @Html.DisplayFor(modelItem => item.Amount)
+      </td>
+      <td>
+        @Html.DisplayFor(modelItem => item.CostCenter)
+      </td>
+      <td>
+        @Html.DisplayFor(modelItem => item.Notes)
+      </td>
+      <td>
+        @Html.DisplayFor(modelItem => item.Approver)
+      </td>
+      <td>
+        @Html.DisplayFor(modelItem => item.DateSubmitted)
+      </td>
+      <td>
+        @Html.DisplayFor(modelItem => item.DateResolved)
+      </td>
+      <td>
+        @Html.ActionLink("View", "ViewReport", new { id=item.Id })
+      </td>
+    </tr>
+}
+
+</table>

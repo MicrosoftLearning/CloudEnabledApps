@@ -1,0 +1,78 @@
+﻿@model Expenses.Web.Models.ExpenseReportModel
+
+@{
+    ViewBag.Title = "Expense Report";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<div class="row">
+    <div class="col-sm-6">
+        <div class="form-horizontal">
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.Status, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10 form-control-static">
+                    @Html.DisplayFor(model => model.Status)
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Amount, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10 form-control-static">
+                    @Html.DisplayFor(model => model.Amount)
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.CostCenter, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10 form-control-static">
+                    @Html.DisplayFor(model => model.CostCenter)
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Notes, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10 form-control-static">
+                    @Html.DisplayFor(model => model.Notes)
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Approver, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10 form-control-static">
+                    @Html.DisplayFor(model => model.Approver)
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    @if (Model.Status == Expenses.Web.Models.ExpenseReportStatus.Submitted)
+                    {
+                        using (Html.BeginForm("ApproveReportPostback"))
+                        {
+                            @Html.AntiForgeryToken()
+                            @Html.HiddenFor(model => model.Id)
+
+                            <button type="submit" name="command" value="Approve" class="btn btn-default">Approve</button>
+                            <button type="submit" name="command" value="Reject" class="btn btn-default">Reject</button>
+                        }
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-sm-6">
+        @Html.Partial("_AssociatedCharges", Model.AssociatedCharges, new ViewDataDictionary { { "ReadOnlyView", true } })
+    </div>
+</div>
+
+<div>
+    @Html.ActionLink("Back to Dashboard", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

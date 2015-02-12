@@ -1,0 +1,77 @@
+﻿@model Expenses.Web.Models.ChargeModel
+
+@{
+    ViewBag.Title = "Delete Charge";
+}
+
+<h3>Are you sure you want to delete this charge?</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Notes)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Notes)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ExpenseDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ExpenseDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Merchant)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Merchant)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Location)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Location)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BilledAmount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BilledAmount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TransactionAmount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TransactionAmount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to Dashboard", "Index")
+        </div>
+    }
+</div>

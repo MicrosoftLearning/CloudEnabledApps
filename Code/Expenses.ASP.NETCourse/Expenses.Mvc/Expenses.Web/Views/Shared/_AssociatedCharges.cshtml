@@ -1,0 +1,30 @@
+﻿@model IList<Expenses.Web.Models.ChargeModel>
+
+<h4>Associated charges</h4>
+<table class="table table-condensed">
+  <thead>
+    <tr>
+      @if (!(bool)ViewData["ReadOnlyView"])
+      {
+        <th></th>
+      }
+      <th>Date</th>
+      <th>Amount</th>
+      <th>Merchant</th>
+    </tr>
+  </thead>
+  <tbody>
+    @foreach (var c in Model)
+    {
+      <tr>
+        @if (!(bool)ViewData["ReadOnlyView"])
+        {
+          <td><button type="submit" name="removeCharge" value="@c.Id" class="btn btn-default">Remove</button></td>
+        }
+        <td>@Html.DisplayFor(modelItem => c.ExpenseDate, "ShortDateTemplate")</td>
+        <td>@Html.DisplayFor(modelItem => c.BilledAmount, "CurrencyTemplate")</td>
+        <td>@Html.DisplayFor(modelItem => c.Merchant)</td>
+      </tr>
+    }
+  </tbody>
+</table>

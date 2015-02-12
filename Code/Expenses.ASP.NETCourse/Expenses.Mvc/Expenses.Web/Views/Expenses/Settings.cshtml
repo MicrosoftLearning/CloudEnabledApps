@@ -1,0 +1,17 @@
+﻿@{
+    ViewBag.Title = "Settings";
+}
+
+<h2>Settings</h2>
+
+@using (Html.BeginForm())
+{
+  @Html.AntiForgeryToken()
+
+  <div class="row">
+    <div class="col-sm-6">
+      <input type="submit" name="submit" value="Clean Up Database &amp; Return to Dashboard" class="btn btn-default" />
+    </div>
+  </div>
+}
+

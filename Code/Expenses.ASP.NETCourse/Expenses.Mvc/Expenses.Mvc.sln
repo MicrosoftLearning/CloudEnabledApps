@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Expenses.Web", "Expenses.Web\Expenses.Web.csproj", "{BBC58199-E3C1-48DF-99F2-8A1E80CE160A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Expenses.Data", "Expenses.Data\Expenses.Data.csproj", "{D34CBC23-0977-4871-8C75-1846791560E3}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BBC58199-E3C1-48DF-99F2-8A1E80CE160A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BBC58199-E3C1-48DF-99F2-8A1E80CE160A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BBC58199-E3C1-48DF-99F2-8A1E80CE160A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BBC58199-E3C1-48DF-99F2-8A1E80CE160A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D34CBC23-0977-4871-8C75-1846791560E3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D34CBC23-0977-4871-8C75-1846791560E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D34CBC23-0977-4871-8C75-1846791560E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D34CBC23-0977-4871-8C75-1846791560E3}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

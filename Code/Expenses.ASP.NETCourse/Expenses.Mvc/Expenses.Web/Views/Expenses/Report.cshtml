@@ -1,0 +1,101 @@
+﻿@model Expenses.Web.Models.ExpenseReportModel
+
+@{
+    ViewBag.Title = "Edit Expense Report";
+}
+
+<h2>@ViewBag.Title</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    @Html.HiddenFor(model => model.Id)
+    @Html.Hidden("outstandingChargesIds", Newtonsoft.Json.JsonConvert.SerializeObject(Model.OutstandingCharges.Select(c => c.Id).ToList()))
+    @Html.Hidden("associatedChargesIds", Newtonsoft.Json.JsonConvert.SerializeObject(Model.AssociatedCharges.Select(c => c.Id).ToList()))
+
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="form-horizontal">
+                <hr />
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Status, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10 form-control-static">
+                        @Html.DisplayFor(model => model.Status)
+                        @Html.HiddenFor(model => model.Status)
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Amount, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10 form-control-static">
+                        @Html.DisplayFor(model => model.Amount)
+                        @Html.HiddenFor(model => model.Amount)
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.CostCenter, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10 form-control-static">
+                        @Html.DisplayFor(model => model.CostCenter)
+                        @Html.HiddenFor(model => model.CostCenter)
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Notes, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Notes, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Notes, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Approver, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10 form-control-static">
+                        @Html.DisplayFor(model => model.Approver)
+                        @Html.HiddenFor(model => model.Approver)
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        @if (Model.Status == Expenses.Web.Models.ExpenseReportStatus.Saved)
+                        {
+                            <button type="submit" name="command" value="Save" class="btn btn-default">Save</button>
+                        }
+                        else
+                        {
+                            <button type="submit" class="btn btn-default" disabled>Save</button>
+                        }
+                        @if (Model.Status == Expenses.Web.Models.ExpenseReportStatus.Saved && !Model.HasUnsavedChanges)
+                        {
+                            <button type="submit" name="command" value="SubmitForApproval" class="btn btn-default">Submit for approval</button>
+                        }
+                        else
+                        {
+                            <button type="submit" class="btn" disabled>Submit for approval</button>
+                        }
+                        <button type="submit" name="command" value="Cancel" class="btn">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-6">
+            @Html.Partial("_AssociatedCharges", Model.AssociatedCharges, new ViewDataDictionary { { "ReadOnlyView", false } })
+            @Html.Partial("_OutstandingCharges", Model.OutstandingCharges, new ViewDataDictionary { { "ReadOnlyView", false } })
+        </div>
+    </div>
+
+}
+
+<div>
+    @Html.ActionLink("Back to Dashboard", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

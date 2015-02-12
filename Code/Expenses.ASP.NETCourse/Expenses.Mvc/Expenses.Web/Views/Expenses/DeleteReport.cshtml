@@ -1,0 +1,72 @@
+﻿@model Expenses.Web.Models.ExpenseReportModel
+
+@{
+    ViewBag.Title = "DeleteReport";
+}
+
+<h2>DeleteReport</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>ExpenseReportModel</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Amount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Amount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CostCenter)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CostCenter)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Notes)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Notes)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Approver)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Approver)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateSubmitted)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateSubmitted)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateResolved)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateResolved)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to Dashboard", "Index")
+        </div>
+    }
+</div>
